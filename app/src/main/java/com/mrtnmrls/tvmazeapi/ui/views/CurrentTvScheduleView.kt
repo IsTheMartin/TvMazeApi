@@ -33,6 +33,7 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.mrtnmrls.tvmazeapi.R
 import com.mrtnmrls.tvmazeapi.domain.model.CurrentTvSchedule
+import com.mrtnmrls.tvmazeapi.ui.actions.ScheduleListAction
 import com.mrtnmrls.tvmazeapi.ui.theme.DarkBrown
 import com.mrtnmrls.tvmazeapi.ui.theme.DeepBlue
 import com.mrtnmrls.tvmazeapi.ui.theme.SandBeige
@@ -41,14 +42,17 @@ import com.mrtnmrls.tvmazeapi.ui.theme.WaveWhite
 import java.util.Locale
 
 @Composable
-internal fun CurrentTvScheduleView(scheduleList: List<CurrentTvSchedule>) {
+internal fun CurrentTvScheduleView(
+    scheduleList: List<CurrentTvSchedule>,
+    onAction: (ScheduleListAction) -> Unit
+) {
     LazyColumn(
         modifier = Modifier.fillMaxSize()
     ) {
         items(scheduleList) { scheduleItem ->
             Column {
                 TvScheduleItemView(scheduleItem = scheduleItem) {
-
+                    onAction(ScheduleListAction.OnTvShowClicked(scheduleItem.showId))
                 }
             }
         }
@@ -75,10 +79,18 @@ internal fun TvScheduleItemView(
                 mediumUrl = scheduleItem.mediumImageUrl
             )
             Column(modifier = Modifier.padding(10.dp)) {
-                Text(text = scheduleItem.showName, maxLines = 1, overflow = TextOverflow.Ellipsis, color = DarkBrown)
+                Text(
+                    text = scheduleItem.showName,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                    color = DarkBrown
+                )
                 Text(text = scheduleItem.episodeName, color = DeepBlue)
                 Text(text = scheduleItem.type)
-                Row(modifier = Modifier.padding(2.dp), verticalAlignment = Alignment.CenterVertically) {
+                Row(
+                    modifier = Modifier.padding(2.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
                     LanguageView(language = scheduleItem.language)
                     Text(text = "${scheduleItem.airtime} - ${scheduleItem.scheduledTime}")
                 }

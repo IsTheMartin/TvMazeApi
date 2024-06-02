@@ -9,5 +9,5 @@ data class Externals(
     @SerializedName("thetvdb")
     val thetvdb: Int,
     @SerializedName("imdb")
-    val imdb: String
+    val imdb: String?
 )

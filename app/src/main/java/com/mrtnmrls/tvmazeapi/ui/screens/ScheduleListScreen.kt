@@ -4,8 +4,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -14,11 +12,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.mrtnmrls.tvmazeapi.data.network.NetworkResultState
 import com.mrtnmrls.tvmazeapi.domain.model.CurrentTvSchedule
+import com.mrtnmrls.tvmazeapi.ui.actions.ScheduleListAction
 import com.mrtnmrls.tvmazeapi.ui.views.CurrentTvScheduleView
 
 @Composable
 fun ScheduleListScreen(
-    scheduleResponse: NetworkResultState<List<CurrentTvSchedule>>
+    scheduleResponse: NetworkResultState<List<CurrentTvSchedule>>,
+    onAction: (ScheduleListAction) -> Unit
 ) {
     Scaffold { paddingValues ->
         Surface(
@@ -32,7 +32,9 @@ fun ScheduleListScreen(
                     message = scheduleResponse.message
                 )
                 is NetworkResultState.Loading -> LoadingView()
-                is NetworkResultState.Success -> CurrentTvScheduleView(scheduleResponse.data)
+                is NetworkResultState.Success -> CurrentTvScheduleView(scheduleResponse.data) {
+                    onAction(it)
+                }
             }
         }
     }

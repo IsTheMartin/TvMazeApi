@@ -69,6 +69,7 @@ dependencies {
     implementation(libs.coil.compose)
     implementation(libs.room.core)
     implementation(libs.room.ktx)
+    implementation(libs.navigation.compose)
     kapt(libs.google.hilt.compiler)
     kapt(libs.room.compiler)
     testImplementation(libs.junit)
