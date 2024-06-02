@@ -2,6 +2,7 @@ package com.mrtnmrls.tvmazeapi.data.mapper
 
 import com.mrtnmrls.tvmazeapi.data.model.local.TvShowEntity
 import com.mrtnmrls.tvmazeapi.data.model.remote.ShowResponse
+import com.mrtnmrls.tvmazeapi.data.model.remote.TvShowQueryResponseItem
 import com.mrtnmrls.tvmazeapi.domain.model.TvShow
 
 fun ShowResponse.toDomain() = TvShow(
@@ -15,7 +16,7 @@ fun ShowResponse.toDomain() = TvShow(
     mediumImageUrl = image?.medium.orEmpty(),
     originalImageUrl = image?.original.orEmpty(),
     summary = summary,
-    imdb = externals.imdb,
+    imdb = externals?.imdb.orEmpty(),
 )
 
 fun ShowResponse.toEntity() = TvShowEntity(
@@ -29,7 +30,7 @@ fun ShowResponse.toEntity() = TvShowEntity(
     mediumImageUrl = image?.medium.orEmpty(),
     originalImageUrl = image?.original.orEmpty(),
     summary = summary,
-    imdb = externals.imdb,
+    imdb = externals?.imdb.orEmpty(),
 )
 
 fun TvShowEntity.toDomain() = TvShow(
@@ -44,4 +45,18 @@ fun TvShowEntity.toDomain() = TvShow(
     originalImageUrl = originalImageUrl,
     summary = summary,
     imdb = imdb,
+)
+
+fun TvShowQueryResponseItem.toDomain() = TvShow(
+    id = show.id,
+    url = show.url,
+    name = show.name,
+    type = show.type,
+    language = show.language,
+    runtime = show.runtime,
+    officialSite = show.officialSite,
+    mediumImageUrl = show.image?.medium.orEmpty(),
+    originalImageUrl = show.image?.original.orEmpty(),
+    summary = show.summary.orEmpty(),
+    imdb = show.externals.imdb.orEmpty(),
 )

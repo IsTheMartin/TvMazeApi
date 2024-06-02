@@ -10,6 +10,6 @@ data class TvShow(
     val officialSite: String?,
     val mediumImageUrl: String?,
     val originalImageUrl: String?,
-    val summary: String,
+    val summary: String?,
     val imdb: String?,
 )

@@ -1,17 +1,12 @@
 package com.mrtnmrls.tvmazeapi.ui.screens
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.mrtnmrls.tvmazeapi.data.network.NetworkResultState
 import com.mrtnmrls.tvmazeapi.domain.model.TvShow
-import com.mrtnmrls.tvmazeapi.ui.UiState
 import com.mrtnmrls.tvmazeapi.ui.theme.DarkBrown
 import com.mrtnmrls.tvmazeapi.ui.views.TvShowDetailsView
 

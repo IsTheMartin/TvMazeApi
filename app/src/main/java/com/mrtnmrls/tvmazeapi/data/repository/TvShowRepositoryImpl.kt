@@ -23,6 +23,25 @@ class TvShowRepositoryImpl @Inject constructor(
         return NetworkResultState.Success(tvShow.toDomain())
     }
 
+    override suspend fun getShowByName(showName: String): NetworkResultState<List<TvShow>> {
+        try {
+            val tvShowResponse = apiService.getShowByName(showName)
+            val bodyResponse = tvShowResponse.body()
+            if (tvShowResponse.isSuccessful.not()) {
+                return NetworkResultState.Error(tvShowResponse.code(), tvShowResponse.message())
+            }
+            if (bodyResponse == null) {
+                return NetworkResultState.Error(tvShowResponse.code(), "Null response")
+            }
+            if (bodyResponse.isNotEmpty()) {
+                return NetworkResultState.Success(bodyResponse.map { it.toDomain() })
+            }
+            return NetworkResultState.Error(0, "Not show found with that query")
+        } catch (e: Exception) {
+            return NetworkResultState.Error(0, e.message)
+        }
+    }
+
     private suspend fun getTvShowFromService(showId: Int): NetworkResultState<TvShow> {
         try {
             val tvShowResponse = apiService.getShowById(showId)

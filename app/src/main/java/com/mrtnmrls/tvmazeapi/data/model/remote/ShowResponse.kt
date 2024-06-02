@@ -41,7 +41,7 @@ data class ShowResponse(
     @SerializedName("dvdCountry")
     val dvdCountry: Any,
     @SerializedName("externals")
-    val externals: Externals,
+    val externals: Externals?,
     @SerializedName("image")
     val image: Image?,
     @SerializedName("summary")

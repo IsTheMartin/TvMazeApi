@@ -7,4 +7,6 @@ interface TvShowRepository {
 
     suspend fun getShowById(showId: Int): NetworkResultState<TvShow>
 
+    suspend fun getShowByName(showName: String): NetworkResultState<List<TvShow>>
+
 }

@@ -4,11 +4,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.navArgument
-import com.mrtnmrls.tvmazeapi.ui.UiState
+import com.mrtnmrls.tvmazeapi.ui.states.UiState
 import com.mrtnmrls.tvmazeapi.ui.actions.ScheduleListAction
 import com.mrtnmrls.tvmazeapi.ui.screens.ScheduleListScreen
 import com.mrtnmrls.tvmazeapi.ui.screens.ShowDetailsScreen
@@ -26,7 +24,7 @@ fun GraphNavHost(
         startDestination = "scheduleListString"
     ) {
         composable("scheduleListString") {
-            ScheduleListScreen(scheduleResponse = uiState.currentTvScheduleState) {
+            ScheduleListScreen(uiState = uiState) {
                 onAction(it)
             }
         }

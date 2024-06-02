@@ -45,7 +45,7 @@ data class Show(
     @SerializedName("image")
     val image: Image?,
     @SerializedName("summary")
-    val summary: String,
+    val summary: String?,
     @SerializedName("updated")
     val updated: Int,
     @SerializedName("_links")

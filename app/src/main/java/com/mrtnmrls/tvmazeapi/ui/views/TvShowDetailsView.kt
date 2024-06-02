@@ -58,9 +58,12 @@ internal fun TvShowDetailsView(modifier: Modifier = Modifier, tvShow: TvShow) {
             Spacer(modifier = Modifier.height(12.dp))
         }
         item {
-            val spannedSummary = HtmlCompat.fromHtml(tvShow.summary, HtmlCompat.FROM_HTML_MODE_COMPACT)
-            Text(spannedSummary.toString())
-            Spacer(modifier = Modifier.height(12.dp))
+            if (tvShow.summary.isNullOrEmpty().not()) {
+                val spannedSummary =
+                    HtmlCompat.fromHtml(tvShow.summary.orEmpty(), HtmlCompat.FROM_HTML_MODE_COMPACT)
+                Text(spannedSummary.toString())
+                Spacer(modifier = Modifier.height(12.dp))
+            }
         }
         item {
             Row(modifier = Modifier.fillMaxWidth()) {
